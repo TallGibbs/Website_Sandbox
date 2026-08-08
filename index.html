@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sandbox</title>
+<meta name="description" content="A place to build small, stupid, self-contained websites and tear them down again.">
+<meta name="robots" content="noindex, nofollow">
+<style>
+:root{
+  --void:#0a0908; --panel:#14110d; --line:#34291d; --line-hot:#4a3a26;
+  --bone:#ece6da; --bone-2:#b9b0a0; --bone-3:#7d7466; --gold:#c9a24c;
+  --display:"Haettenschweiler","Arial Narrow Bold","Impact","Franklin Gothic Bold",sans-serif;
+  --mono:ui-monospace,"Cascadia Mono","SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; min-height:100vh; background:var(--void); color:var(--bone);
+  font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  line-height:1.6; display:flex; align-items:center;
+  background-image:
+    radial-gradient(110% 70% at 50% 0%, rgba(201,162,76,.07), transparent 60%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.014) 0 1px, transparent 1px 3px);
+}
+.wrap{ width:min(880px, 100% - 48px); margin-inline:auto; padding:60px 0; }
+.kicker{ font-family:var(--mono); font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); margin-bottom:18px; }
+h1{ font-family:var(--display); font-weight:400; text-transform:uppercase; font-size:clamp(44px,11vw,110px); line-height:.88; margin:0; }
+.lede{ color:var(--bone-2); max-width:56ch; margin:24px 0 0; font-size:16px; }
+.list{ margin-top:56px; border-top:1px solid var(--line); }
+a.item{
+  display:flex; align-items:baseline; gap:20px; flex-wrap:wrap;
+  padding:26px 6px; border-bottom:1px solid var(--line);
+  text-decoration:none; color:inherit; transition:background .18s, padding-left .18s;
+}
+a.item:hover{ background:rgba(201,162,76,.05); padding-left:16px; }
+a.item:focus-visible{ outline:2px solid var(--gold); outline-offset:-2px; }
+.item__n{ font-family:var(--mono); font-size:11px; color:var(--bone-3); letter-spacing:.2em; min-width:32px; }
+.item__t{ font-family:var(--display); font-size:clamp(22px,4vw,34px); text-transform:uppercase; flex:1 1 260px; }
+a.item:hover .item__t{ color:var(--gold); }
+.item__d{ color:var(--bone-3); font-size:13.5px; flex:1 1 240px; }
+.item__y{ font-family:var(--mono); font-size:11px; color:var(--bone-3); letter-spacing:.16em; }
+footer{ margin-top:60px; font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--bone-3); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">Nothing here is serious</div>
+  <h1>Sandbox</h1>
+  <p class="lede">
+    Small, self-contained, single-page websites. Each one is a folder with an
+    <code>index.html</code> and whatever it needs. No build step, no framework,
+    no database. Delete a folder and it's gone.
+  </p>
+
+  <nav class="list">
+    <a class="item" href="strangers-2026/">
+      <span class="item__n">01</span>
+      <span class="item__t">Delores Threat Board</span>
+      <span class="item__d">A situation board for a relay team whose race may or may not exist.</span>
+      <span class="item__y">2026</span>
+    </a>
+  </nav>
+
+  <footer>Built for fun &mdash; torn down without ceremony</footer>
+</div>
+</body>
+</html>

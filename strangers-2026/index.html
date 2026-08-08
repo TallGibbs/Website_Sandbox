@@ -1,0 +1,1112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strangers 2026 — Delores Threat Board</title>
+<meta name="description" content="Situation board for Never Get In A Van With Strangers. Race status: unconfirmed. Threat level: Delores.">
+<meta name="robots" content="noindex, nofollow">
+<style>
+/* ============================================================
+   STRANGERS 2026 — DELORES THREAT BOARD
+   One file. No dependencies. Edit CONFIG at the bottom.
+   ============================================================ */
+
+:root{
+  --void:      #0a0908;
+  --panel:     #14110d;
+  --panel-2:   #1c1813;
+  --panel-3:   #241f18;
+  --line:      #34291d;
+  --line-hot:  #4a3a26;
+
+  --bone:      #ece6da;
+  --bone-2:    #b9b0a0;
+  --bone-3:    #7d7466;
+
+  --gold:      #c9a24c;
+  --gold-dim:  #8a6f33;
+  --rust:      #c04a2a;
+  --rust-glow: #ff6a3d;
+  --moss:      #7f9b4e;
+  --fur:       #8a7355;
+
+  --display: "Haettenschweiler", "Arial Narrow Bold", "Impact", "Franklin Gothic Bold", sans-serif;
+  --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, "Cascadia Mono", "SF Mono", Menlo, Consolas, monospace;
+
+  --gut: clamp(16px, 4vw, 40px);
+}
+
+*{ box-sizing:border-box; }
+
+html{ scroll-behavior:smooth; }
+
+body{
+  margin:0;
+  background:var(--void);
+  color:var(--bone);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  /* grit: two soft vignettes + a fine noise-ish gradient weave */
+  background-image:
+    radial-gradient(120% 80% at 50% -10%, rgba(201,162,76,.07), transparent 60%),
+    radial-gradient(90% 60% at 50% 110%, rgba(192,74,42,.06), transparent 60%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.014) 0 1px, transparent 1px 3px);
+  background-attachment:fixed;
+}
+
+.wrap{ width:min(1120px, 100% - var(--gut) * 2); margin-inline:auto; }
+
+/* ---------- shared type ---------- */
+h1,h2,h3{ margin:0; font-family:var(--display); font-weight:400; letter-spacing:.02em; text-transform:uppercase; line-height:.95; }
+
+.eyebrow{
+  font-family:var(--mono);
+  font-size:11px; letter-spacing:.28em; text-transform:uppercase;
+  color:var(--gold); margin:0 0 10px;
+}
+.eyebrow .num{ color:var(--bone-3); margin-right:10px; }
+
+.sec-title{ font-size:clamp(30px,6vw,58px); color:var(--bone); }
+.sec-sub{ color:var(--bone-2); max-width:62ch; margin:14px 0 0; font-size:15px; }
+
+section{ padding:clamp(56px,9vw,110px) 0; position:relative; }
+section + section{ border-top:1px solid var(--line); }
+
+/* ============================================================
+   TICKER
+   ============================================================ */
+.ticker{
+  position:sticky; top:0; z-index:60;
+  background:var(--rust);
+  color:#150c07;
+  font-family:var(--mono); font-size:11px; font-weight:700;
+  letter-spacing:.18em; text-transform:uppercase;
+  overflow:hidden; white-space:nowrap;
+  border-bottom:1px solid #7c2c17;
+}
+.ticker__track{ display:inline-block; padding:7px 0; animation:slide 34s linear infinite; }
+.ticker__track span{ padding:0 26px; }
+.ticker:hover .ticker__track{ animation-play-state:paused; }
+@keyframes slide{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+
+/* ============================================================
+   MASTHEAD
+   ============================================================ */
+.mast{ padding:clamp(28px,5vw,48px) 0 0; }
+.mast__kicker{
+  font-family:var(--mono); font-size:11px; letter-spacing:.3em;
+  color:var(--bone-3); text-transform:uppercase; margin-bottom:16px;
+}
+.mast__title{
+  font-size:clamp(38px, 9.2vw, 118px);
+  line-height:.86;
+  color:var(--bone);
+  text-shadow:0 0 40px rgba(201,162,76,.12);
+}
+.mast__title em{ font-style:normal; color:var(--gold); }
+.mast__teams{
+  display:flex; flex-wrap:wrap; gap:10px; margin-top:24px;
+}
+.tag{
+  font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  border:1px solid var(--line-hot); color:var(--bone-2);
+  padding:6px 12px; border-radius:2px; background:rgba(255,255,255,.02);
+}
+.tag--gold{ border-color:var(--gold-dim); color:var(--gold); }
+
+/* ============================================================
+   THE BOARD
+   ============================================================ */
+.board{
+  margin-top:clamp(28px,5vw,48px);
+  border:1px solid var(--line-hot);
+  background:
+    linear-gradient(180deg, var(--panel-2), var(--panel));
+  box-shadow:0 40px 90px -50px #000, inset 0 1px 0 rgba(255,255,255,.03);
+  border-radius:3px;
+  overflow:hidden;
+}
+.board__head{
+  display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  padding:14px 20px;
+  border-bottom:1px solid var(--line);
+  background:rgba(0,0,0,.35);
+  font-family:var(--mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--bone-3);
+}
+.board__head .spacer{ flex:1; }
+
+.lamp{ display:inline-flex; align-items:center; gap:9px; color:var(--rust-glow); }
+.lamp i{
+  width:9px; height:9px; border-radius:50%; background:var(--rust-glow);
+  box-shadow:0 0 12px var(--rust-glow); animation:pulse 1.5s ease-in-out infinite;
+}
+@keyframes pulse{ 0%,100%{ opacity:1; } 50%{ opacity:.18; } }
+
+.board__grid{
+  display:grid;
+  grid-template-columns: 1.55fr .95fr;
+}
+@media (max-width:880px){ .board__grid{ grid-template-columns:1fr; } }
+
+.board__main{ padding:clamp(22px,4vw,42px); }
+.board__side{
+  padding:clamp(22px,4vw,32px);
+  border-left:1px solid var(--line);
+  background:rgba(0,0,0,.22);
+  display:flex; flex-direction:column; gap:30px;
+}
+@media (max-width:880px){ .board__side{ border-left:0; border-top:1px solid var(--line); } }
+
+.readout-label{
+  font-family:var(--mono); font-size:10px; letter-spacing:.26em;
+  text-transform:uppercase; color:var(--bone-3); margin-bottom:10px;
+}
+
+.status-line{
+  font-family:var(--display);
+  font-size:clamp(30px,5.6vw,64px);
+  color:var(--rust-glow);
+  line-height:.95;
+}
+.status-note{ color:var(--bone-2); font-size:14px; margin-top:10px; max-width:46ch; }
+
+/* countdown */
+.clock{ margin-top:clamp(26px,4vw,40px); }
+.clock__digits{ display:flex; gap:clamp(8px,2.4vw,22px); flex-wrap:wrap; }
+.unit{ min-width:0; }
+.unit__n{
+  font-family:var(--mono); font-weight:700;
+  font-size:clamp(30px,7vw,60px);
+  line-height:1; color:var(--bone);
+  font-variant-numeric:tabular-nums;
+  letter-spacing:-.02em;
+}
+.unit__l{
+  font-family:var(--mono); font-size:9px; letter-spacing:.24em;
+  text-transform:uppercase; color:var(--bone-3); margin-top:8px;
+}
+.clock__cap{
+  margin-top:16px; font-size:13px; color:var(--bone-3);
+  border-left:2px solid var(--gold-dim); padding-left:12px;
+}
+.clock__cap b{ color:var(--gold); font-weight:600; }
+
+/* roster pips */
+.pips{ display:flex; gap:7px; flex-wrap:wrap; }
+.pips{ gap:5px; }
+.pip{
+  width:20px; height:30px; border-radius:2px;
+  border:1px solid var(--line-hot);
+  background:linear-gradient(180deg, rgba(255,255,255,.05), transparent);
+}
+.pip--on{ background:var(--fur); border-color:#a58a67; box-shadow:inset 0 -6px 10px -6px #000; }
+.pip--maybe{ border-style:dashed; border-color:var(--gold-dim); background:rgba(201,162,76,.1); }
+.pip--open{ animation:pulse 2.2s ease-in-out infinite; border-color:var(--rust); }
+.pips__cap{ font-family:var(--mono); font-size:12px; color:var(--bone-2); margin-top:12px; }
+.pips__cap b{ color:var(--rust-glow); }
+
+/* threat dial */
+.dial{ width:100%; max-width:280px; }
+.dial text{ font-family:var(--mono); }
+.needle{ transform-box:fill-box; transform-origin:50% 100%; transition:transform 1.4s cubic-bezier(.2,.9,.2,1); }
+.threat-word{
+  font-family:var(--display); font-size:clamp(22px,3.4vw,34px);
+  color:var(--rust-glow); letter-spacing:.06em; margin-top:4px;
+}
+.threat-sub{ font-family:var(--mono); font-size:11px; color:var(--bone-3); letter-spacing:.14em; }
+
+/* ============================================================
+   RUMOR MILL
+   ============================================================ */
+.chain{ display:grid; gap:0; margin-top:44px; }
+.node{
+  display:grid; grid-template-columns:64px 1fr; gap:clamp(14px,3vw,28px);
+  align-items:start;
+  padding:22px 0;
+  border-top:1px solid var(--line);
+  position:relative;
+}
+.node:last-child{ border-bottom:1px solid var(--line); }
+.node__n{
+  font-family:var(--display); font-size:clamp(30px,5vw,46px);
+  color:var(--line-hot); line-height:1; padding-top:2px;
+}
+.node--last .node__n{ color:var(--rust); }
+.node__t{ font-family:var(--display); font-size:clamp(18px,3vw,26px); color:var(--bone); }
+.node__d{ color:var(--bone-2); font-size:15px; margin-top:6px; max-width:70ch; }
+.node__d q{ color:var(--gold); font-style:italic; quotes:'"' '"'; }
+.node:hover{ background:rgba(201,162,76,.035); }
+.node:hover .node__n{ color:var(--gold); }
+
+/* ============================================================
+   CARD GRIDS
+   ============================================================ */
+.grid{ display:grid; gap:14px; margin-top:44px; }
+.grid--3{ grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); }
+.grid--2{ grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); }
+
+.card{
+  border:1px solid var(--line);
+  background:linear-gradient(180deg, var(--panel-2), var(--panel));
+  padding:24px;
+  border-radius:3px;
+  transition:border-color .2s, transform .2s, background .2s;
+}
+.card:hover{ border-color:var(--line-hot); transform:translateY(-2px); }
+.card__k{
+  font-family:var(--mono); font-size:10px; letter-spacing:.24em;
+  text-transform:uppercase; color:var(--gold); margin-bottom:12px;
+}
+.card__h{ font-family:var(--display); font-size:22px; color:var(--bone); margin-bottom:8px; }
+.card__b{ color:var(--bone-2); font-size:14.5px; }
+
+/* the away-weekend menu */
+.menu{ margin-top:44px; border-top:1px solid var(--line); }
+.menu__row{
+  display:flex; align-items:baseline; gap:18px;
+  padding:18px 4px;
+  border-bottom:1px solid var(--line);
+  transition:background .18s, padding-left .18s;
+}
+.menu__row:hover{ background:rgba(201,162,76,.05); padding-left:14px; }
+.menu__i{
+  font-family:var(--mono); font-size:11px; color:var(--bone-3);
+  letter-spacing:.2em; min-width:34px;
+}
+.menu__t{ font-family:var(--display); font-size:clamp(20px,3.4vw,30px); color:var(--bone); flex:1; }
+.menu__n{ font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); text-align:right; }
+.menu__row--x .menu__t{ color:var(--bone-3); text-decoration:line-through; text-decoration-color:var(--rust); }
+.menu__row--x .menu__n{ color:var(--rust); }
+
+/* ============================================================
+   NIGHTMARE ROSTER
+   ============================================================ */
+.roster{
+  display:grid; gap:12px; margin-top:44px;
+  grid-template-columns:repeat(auto-fit, minmax(190px,1fr));
+}
+.slot{
+  border:1px solid var(--line);
+  background:var(--panel);
+  border-radius:3px; overflow:hidden;
+  display:flex; flex-direction:column;
+  min-height:230px;
+}
+.slot__pic{
+  flex:1;
+  display:flex; align-items:center; justify-content:center;
+  background:
+    repeating-linear-gradient(45deg, rgba(255,255,255,.022) 0 10px, transparent 10px 20px),
+    var(--panel-3);
+  color:var(--line-hot);
+  font-family:var(--display); font-size:60px;
+  min-height:150px;
+}
+.slot__pic svg{ width:74px; height:74px; opacity:.5; }
+.slot__meta{ padding:14px; border-top:1px solid var(--line); }
+.slot__name{ font-family:var(--display); font-size:19px; color:var(--bone); }
+.slot__role{ font-family:var(--mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--bone-3); margin-top:6px; }
+
+.slot__pic{ min-height:112px; font-size:46px; }
+.slot--drift .slot__name{ color:var(--bone-2); }
+.slot--ghost{ opacity:.42; border-style:dashed; }
+.slot--ghost .slot__name{ text-decoration:line-through; text-decoration-color:var(--rust); }
+
+/* --- Delores, featured --- */
+.delores{
+  display:grid; grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+  margin-top:44px;
+  border:1px solid var(--gold-dim);
+  background:linear-gradient(180deg, var(--panel-2), var(--panel));
+  border-radius:3px; overflow:hidden;
+  box-shadow:0 0 90px -45px rgba(201,162,76,.55);
+  transition:box-shadow .4s, border-color .4s;
+}
+@media (max-width:760px){ .delores{ grid-template-columns:1fr; } }
+.delores__pic{ background:#070605; overflow:hidden; }
+.delores__pic img{
+  width:100%; height:100%; min-height:360px; max-height:660px;
+  object-fit:cover; object-position:50% 34%; display:block;
+  filter:saturate(.92) contrast(1.06);
+  cursor:pointer; transition:filter .35s, transform .5s;
+}
+.delores__pic img:hover{ filter:saturate(1.12) contrast(1.14); }
+.delores__meta{
+  padding:clamp(24px,4vw,44px);
+  display:flex; flex-direction:column; justify-content:center;
+}
+.delores__name{ font-family:var(--display); font-size:clamp(46px,8.4vw,92px); color:var(--gold); line-height:.88; }
+.delores__tag{ font-family:var(--mono); font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:var(--bone-3); margin-top:16px; }
+.delores__b{ color:var(--bone-2); font-size:15px; margin-top:22px; max-width:46ch; }
+.dstats{ margin-top:28px; border-top:1px solid var(--line); }
+.dstats div{
+  display:flex; justify-content:space-between; align-items:baseline; gap:16px;
+  padding:11px 0; border-bottom:1px solid var(--line);
+  font-family:var(--mono); font-size:12px;
+}
+.dstats dt{ color:var(--bone-3); letter-spacing:.14em; text-transform:uppercase; }
+.dstats dd{ margin:0; color:var(--bone); text-align:right; }
+
+body.unleashed .delores{ box-shadow:0 0 110px -30px var(--rust-glow); border-color:var(--rust); }
+body.unleashed .delores__pic img{ transform:scale(1.04); filter:saturate(1.3) contrast(1.2); }
+body.unleashed .delores__name{ color:var(--rust-glow); }
+
+/* ============================================================
+   THE ASK — A/B/C
+   ============================================================ */
+.ask{ display:grid; gap:12px; margin-top:44px; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); }
+.opt{
+  position:relative;
+  text-align:left;
+  border:1px solid var(--line-hot);
+  background:linear-gradient(180deg, var(--panel-2), var(--panel));
+  color:var(--bone);
+  padding:26px 24px 24px;
+  border-radius:3px;
+  cursor:pointer;
+  font:inherit;
+  transition:border-color .2s, transform .15s, background .2s;
+  overflow:hidden;
+}
+.opt:hover{ border-color:var(--gold); transform:translateY(-3px); }
+.opt:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+.opt__l{ font-family:var(--display); font-size:48px; color:var(--line-hot); line-height:.9; transition:color .2s; }
+.opt:hover .opt__l{ color:var(--gold); }
+.opt__t{ font-family:var(--display); font-size:24px; margin-top:10px; }
+.opt__d{ color:var(--bone-3); font-size:13.5px; margin-top:8px; }
+
+.opt[aria-pressed="true"]{ border-color:var(--moss); background:rgba(127,155,78,.08); }
+.opt[aria-pressed="true"] .opt__l{ color:var(--moss); }
+.stamp{
+  position:absolute; top:16px; right:-6px;
+  font-family:var(--display); font-size:15px; letter-spacing:.1em;
+  color:var(--moss); border:2px solid var(--moss);
+  padding:4px 10px; border-radius:2px;
+  transform:rotate(9deg) scale(.5); opacity:0;
+  transition:transform .28s cubic-bezier(.2,1.6,.4,1), opacity .2s;
+  pointer-events:none;
+}
+.opt[aria-pressed="true"] .stamp{ transform:rotate(9deg) scale(1); opacity:1; }
+
+.disclaimer{
+  margin-top:26px; padding:18px 20px;
+  border:1px dashed var(--line-hot);
+  background:rgba(192,74,42,.06);
+  font-family:var(--mono); font-size:12.5px; line-height:1.7;
+  color:var(--bone-2);
+}
+.disclaimer b{ color:var(--rust-glow); }
+
+/* ============================================================
+   RECEIPTS
+   ============================================================ */
+details.rec{
+  border:1px solid var(--line);
+  background:var(--panel);
+  border-radius:3px;
+  margin-top:12px;
+}
+details.rec summary{
+  cursor:pointer; padding:18px 22px; list-style:none;
+  font-family:var(--mono); font-size:12px; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--bone-2);
+  display:flex; align-items:center; gap:14px;
+}
+details.rec summary::-webkit-details-marker{ display:none; }
+details.rec summary::before{ content:"+"; color:var(--gold); font-size:16px; width:14px; }
+details.rec[open] summary::before{ content:"\2212"; }
+details.rec[open] summary{ border-bottom:1px solid var(--line); color:var(--gold); }
+details.rec summary:hover{ color:var(--bone); }
+.rec__body{ padding:26px 22px 30px; }
+.rec__body h4{
+  font-family:var(--mono); font-size:11px; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--gold); margin:30px 0 12px; font-weight:400;
+}
+.rec__body h4:first-child{ margin-top:0; }
+.rec__body p{ color:var(--bone-2); font-size:15px; margin:0 0 14px; max-width:74ch; }
+.rec__body ul{ color:var(--bone-2); font-size:15px; max-width:74ch; padding-left:20px; }
+.rec__body li{ margin-bottom:9px; }
+.rec__body strong{ color:var(--bone); }
+.rec__meta{
+  font-family:var(--mono); font-size:11.5px; color:var(--bone-3);
+  border-left:2px solid var(--line-hot); padding-left:14px; margin-bottom:24px; line-height:1.9;
+}
+.rec__sig{ font-family:var(--display); font-size:20px; color:var(--gold); margin-top:22px; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{ border-top:1px solid var(--line); padding:clamp(50px,8vw,90px) 0 60px; text-align:center; }
+.kicker{
+  font-family:var(--display);
+  font-size:clamp(24px,5vw,52px);
+  color:var(--bone);
+  max-width:20ch; margin:0 auto;
+  line-height:1.02;
+}
+.kicker em{ font-style:normal; color:var(--gold); }
+.foot-note{ font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--bone-3); margin-top:30px; }
+.foot-love{ font-family:var(--display); font-size:22px; color:var(--rust-glow); margin-top:22px; }
+
+/* unleashed easter egg */
+.unleash-bar{
+  position:fixed; left:0; right:0; bottom:0; z-index:80;
+  background:var(--rust); color:#150c07;
+  font-family:var(--mono); font-size:12px; font-weight:700;
+  letter-spacing:.2em; text-transform:uppercase;
+  padding:12px 20px; text-align:center;
+  transform:translateY(110%); transition:transform .4s cubic-bezier(.2,1,.3,1);
+}
+body.unleashed .unleash-bar{ transform:translateY(0); }
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
+  html{ scroll-behavior:auto; }
+}
+</style>
+</head>
+<body>
+
+<div class="ticker" role="status" aria-label="Transmission log">
+  <div class="ticker__track">
+    <span>Incoming transmission &mdash; 05 Aug 2026, 14:58 ET &mdash; from: Kelaine</span>
+    <span>Subject: Strangers 2026 &mdash; Update + Input/Feedback Needed!</span>
+    <span>Race status: unconfirmed</span>
+    <span>Threat level: Delores</span>
+    <span>Brian: still not invited</span>
+    <span>Incoming transmission &mdash; 05 Aug 2026, 14:58 ET &mdash; from: Kelaine</span>
+    <span>Subject: Strangers 2026 &mdash; Update + Input/Feedback Needed!</span>
+    <span>Race status: unconfirmed</span>
+    <span>Threat level: Delores</span>
+    <span>Brian: still not invited</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- ======================= MASTHEAD ======================= -->
+  <header class="mast">
+    <div class="mast__kicker">Situation board &mdash; established 2013 &mdash; approx. twelve Ragnars deep</div>
+    <h1 class="mast__title">Never Get In<br>A Van With<br><em>Strangers</em></h1>
+    <div class="mast__teams">
+      <span class="tag tag--gold">Team #140</span>
+      <span class="tag">Team #150 &mdash; Electric Boogaloo</span>
+      <span class="tag">Ragnar Trail Wisconsin</span>
+      <span class="tag">September 2026</span>
+    </div>
+  </header>
+
+  <!-- ======================= THE BOARD ======================= -->
+  <div class="board">
+    <div class="board__head">
+      <span class="lamp"><i></i> Live</span>
+      <span class="spacer"></span>
+      <span>Board updated 05 Aug 2026</span>
+    </div>
+
+    <div class="board__grid">
+      <div class="board__main">
+        <div class="readout-label">Race status</div>
+        <div class="status-line">Unconfirmed</div>
+        <p class="status-note">
+          Not cancelled. Not confirmed. Ragnar is awaiting guidance from executive leadership
+          at its parent company. Everyone else is awaiting Ragnar.
+        </p>
+
+        <div class="clock">
+          <div class="readout-label">Time until race weekend</div>
+          <div class="clock__digits" id="clock">
+            <div class="unit"><div class="unit__n" id="d">--</div><div class="unit__l">Days</div></div>
+            <div class="unit"><div class="unit__n" id="h">--</div><div class="unit__l">Hours</div></div>
+            <div class="unit"><div class="unit__n" id="m">--</div><div class="unit__l">Minutes</div></div>
+            <div class="unit"><div class="unit__n" id="s">--</div><div class="unit__l">Seconds</div></div>
+          </div>
+          <p class="clock__cap">
+            <b>Provisional.</b> Ragnar has not confirmed anything, including this date.
+            Book refundable. Set the real one in <code>CONFIG.raceISO</code> at the bottom of this file.
+          </p>
+        </div>
+      </div>
+
+      <aside class="board__side">
+        <div>
+          <div class="readout-label">Roster &mdash; Team #140</div>
+          <div class="pips" aria-label="Four confirmed runners, one probable, three open slots">
+            <span class="pip pip--on"></span>
+            <span class="pip pip--on"></span>
+            <span class="pip pip--on"></span>
+            <span class="pip pip--on"></span>
+            <span class="pip pip--maybe"></span>
+            <span class="pip pip--open"></span>
+            <span class="pip pip--open"></span>
+            <span class="pip pip--open"></span>
+          </div>
+          <div class="pips__cap"><b>3&ndash;4 slots open.</b> Recruiting into a maybe.</div>
+        </div>
+
+        <div>
+          <div class="readout-label">Threat level</div>
+          <svg class="dial" viewBox="0 0 240 146" role="img" aria-label="Threat dial pinned at Delores">
+            <defs>
+              <linearGradient id="arc" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%"   stop-color="#7f9b4e"/>
+                <stop offset="45%"  stop-color="#c9a24c"/>
+                <stop offset="100%" stop-color="#ff6a3d"/>
+              </linearGradient>
+            </defs>
+            <path d="M20 120 A100 100 0 0 1 220 120" fill="none" stroke="#34291d" stroke-width="16" stroke-linecap="round"/>
+            <path d="M20 120 A100 100 0 0 1 220 120" fill="none" stroke="url(#arc)" stroke-width="16"
+                  stroke-linecap="round" stroke-dasharray="314" stroke-dashoffset="314" id="arcFill"/>
+            <g id="needleG" class="needle" style="transform:rotate(-88deg)">
+              <line x1="120" y1="40" x2="120" y2="120" stroke="#ece6da" stroke-width="3.5" stroke-linecap="round"/>
+            </g>
+            <circle cx="120" cy="120" r="8" fill="#14110d" stroke="#c9a24c" stroke-width="2"/>
+            <text x="14"  y="142" fill="#7d7466" font-size="9.5" letter-spacing="1.6">CALM</text>
+            <text x="192" y="142" fill="#7d7466" font-size="9.5" letter-spacing="1.6">MAX</text>
+          </svg>
+          <div class="threat-word" id="threatWord">Delores</div>
+          <div class="threat-sub" id="threatSub">Raccoon &mdash; unaffiliated</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- ======================= RUMOR MILL ======================= -->
+  <section id="rumor">
+    <p class="eyebrow"><span class="num">01</span> The rumor mill</p>
+    <h2 class="sec-title">Chain of custody</h2>
+    <p class="sec-sub">
+      Every piece of information you currently have about September travelled this exact path.
+      Presented without comment, so you can decide for yourself how much of your anxiety is load-bearing.
+    </p>
+
+    <div class="chain">
+      <div class="node">
+        <div class="node__n">01</div>
+        <div>
+          <div class="node__t">Ragnar cancels a couple of August races</div>
+          <div class="node__d">No explanation given. This part is real and verifiable.</div>
+        </div>
+      </div>
+      <div class="node">
+        <div class="node__n">02</div>
+        <div>
+          <div class="node__t">A former employee posts a video to Facebook</div>
+          <div class="node__d">Containing a hypothesis. Note the word: <q>hypothesis</q>. Not an announcement.</div>
+        </div>
+      </div>
+      <div class="node">
+        <div class="node__n">03</div>
+        <div>
+          <div class="node__t">Reddit begins to percolate</div>
+          <div class="node__d">Described in the source material as <q>theories and pointless anxiety</q>.</div>
+        </div>
+      </div>
+      <div class="node">
+        <div class="node__n">04</div>
+        <div>
+          <div class="node__t">The grapevine activates</div>
+          <div class="node__d">Rebecca, identified in the record as gossip queen, immediately followed by <q>(jk)</q>. The parenthetical is doing a lot of work.</div>
+        </div>
+      </div>
+      <div class="node">
+        <div class="node__n">05</div>
+        <div>
+          <div class="node__t">Kelaine and Gibbs get on the phone</div>
+          <div class="node__d">The first responsible act in the entire chain. Two adults, one phone call, a plan.</div>
+        </div>
+      </div>
+      <div class="node node--last">
+        <div class="node__n">06</div>
+        <div>
+          <div class="node__t">This email. Then: you.</div>
+          <div class="node__d">Where the anxiety stops and the contingency planning starts.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= WHAT TO KNOW ======================= -->
+  <section id="know">
+    <p class="eyebrow"><span class="num">02</span> What to know</p>
+    <h2 class="sec-title">The four facts</h2>
+    <p class="sec-sub">Everything actually known, as of the transmission. Anything not on this list is Reddit.</p>
+
+    <div class="grid grid--2">
+      <div class="card">
+        <div class="card__k">Fact 01 &mdash; status</div>
+        <div class="card__h">Trail Wisconsin is not cancelled</div>
+        <p class="card__b">Nor is it confirmed. We do not know yet. You are being told this on purpose, for transparency, rather than being managed.</p>
+      </div>
+      <div class="card">
+        <div class="card__k">Fact 02 &mdash; the reply</div>
+        <div class="card__h">Ragnar wrote back in under an hour</div>
+        <p class="card__b">Thorough. Human. Zero concrete answers. More is expected within a week or so. The full text is in the receipts below.</p>
+      </div>
+      <div class="card">
+        <div class="card__k">Fact 03 &mdash; logistics</div>
+        <div class="card__h">Book refundable. All of it.</div>
+        <p class="card__b">Flights, rooms, rentals, the works. Ragnar's own operations lead said the same thing unprompted: don't book anything non-cancellable yet.</p>
+      </div>
+      <div class="card">
+        <div class="card__k">Fact 04 &mdash; the bind</div>
+        <div class="card__h">We are recruiting into a maybe</div>
+        <p class="card__b">Three to four slots still open, which means selling a race that might not exist. Annoying. Solvable. As always, we'll figure it out.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= MOST IMPORTANTLY ======================= -->
+  <section id="most">
+    <p class="eyebrow"><span class="num">03</span> Most importantly</p>
+    <h2 class="sec-title">The weekend<br>happens either way</h2>
+    <p class="sec-sub">
+      Race on or race off, Kelaine and Gibbs are going to the Midwest for a Strangers weekend, and would
+      love it if literally all of you came. Wisconsin, Illinois, wherever. Here is the confirmed programme.
+    </p>
+
+    <div class="menu">
+      <div class="menu__row">
+        <div class="menu__i">i</div>
+        <div class="menu__t">Custom swag</div>
+        <div class="menu__n">Non-negotiable</div>
+      </div>
+      <div class="menu__row">
+        <div class="menu__i">ii</div>
+        <div class="menu__t">Outdoor activities &mdash; running? kayaking? dancing in the moonlight?</div>
+        <div class="menu__n">All three</div>
+      </div>
+      <div class="menu__row">
+        <div class="menu__i">iii</div>
+        <div class="menu__t">Calling Gibbs a praying mantis</div>
+        <div class="menu__n">Load-bearing</div>
+      </div>
+      <div class="menu__row">
+        <div class="menu__i">iv</div>
+        <div class="menu__t">Eating too many snacks</div>
+        <div class="menu__n">Structurally required</div>
+      </div>
+      <div class="menu__row">
+        <div class="menu__i">v</div>
+        <div class="menu__t">Finding excellent bakeries</div>
+        <div class="menu__n">Reconnaissance</div>
+      </div>
+      <div class="menu__row">
+        <div class="menu__i">vi</div>
+        <div class="menu__t">A s&eacute;ance to contact former Ragnar teammates</div>
+        <div class="menu__n">Pending medium</div>
+      </div>
+      <div class="menu__row menu__row--x">
+        <div class="menu__i">vii</div>
+        <div class="menu__t">Brian</div>
+        <div class="menu__n">Still not invited</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= NIGHTMARE ROSTER ======================= -->
+  <section id="nightmare">
+    <p class="eyebrow"><span class="num">04</span> What we don't need or want</p>
+    <h2 class="sec-title">The nightmare roster</h2>
+    <p class="sec-sub">
+      The stated personal nightmare: this email spooks everyone into pulling out, then Ragnar says
+      <q>GAME ON</q> and the team is down to two humans and whoever can be sourced at short notice.
+      Below is that team. Look at it. Really look at it.
+    </p>
+
+    <div class="delores">
+      <div class="delores__pic">
+        <img src="assets/delores-bear-down.jpeg" id="delores"
+             alt="A muscular raccoon in a headband reading DELORES, holding a weathered wooden sign that says BEAR DOWN.">
+      </div>
+      <div class="delores__meta">
+        <div class="delores__name">Delores</div>
+        <div class="delores__tag">Raccoon &mdash; unaffiliated &mdash; bear down</div>
+        <p class="delores__b">
+          Named in the email as a hypothetical worst case, one rung below the seedy drifters.
+          Within hours a teammate returned photographic evidence that she is real, in shape,
+          and already in team colours. The threat was supposed to be a joke. She is now the
+          most prepared member of the roster.
+        </p>
+        <dl class="dstats">
+          <div><dt>Position</dt><dd>Any leg, all legs</dd></div>
+          <div><dt>Recruited by</dt><dd>Rumour, then group chat</dd></div>
+          <div><dt>Prior experience</dt><dd>Undisclosed</dd></div>
+          <div><dt>Status</dt><dd>Waiting by the van</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="roster">
+      <div class="slot">
+        <div class="slot__pic">K</div>
+        <div class="slot__meta">
+          <div class="slot__name">Kelaine</div>
+          <div class="slot__role">Captain &mdash; will run every unwanted leg</div>
+        </div>
+      </div>
+      <div class="slot">
+        <div class="slot__pic">G</div>
+        <div class="slot__meta">
+          <div class="slot__name">Gibbs</div>
+          <div class="slot__role">Praying mantis &mdash; allegedly</div>
+        </div>
+      </div>
+
+      <div class="slot slot--drift">
+        <div class="slot__pic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
+          </svg>
+        </div>
+        <div class="slot__meta">
+          <div class="slot__name">Seedy Drifter I</div>
+          <div class="slot__role">Sourced &mdash; black market</div>
+        </div>
+      </div>
+      <div class="slot slot--drift">
+        <div class="slot__pic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
+          </svg>
+        </div>
+        <div class="slot__meta">
+          <div class="slot__name">Seedy Drifter II</div>
+          <div class="slot__role">Sourced &mdash; black market</div>
+        </div>
+      </div>
+      <div class="slot slot--drift">
+        <div class="slot__pic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
+          </svg>
+        </div>
+        <div class="slot__meta">
+          <div class="slot__name">Seedy Drifter III</div>
+          <div class="slot__role">Sourced &mdash; black market</div>
+        </div>
+      </div>
+      <div class="slot slot--ghost">
+        <div class="slot__pic" aria-hidden="true">?</div>
+        <div class="slot__meta">
+          <div class="slot__name">Brian</div>
+          <div class="slot__role">Reached via s&eacute;ance &mdash; not invited</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= THE ASK ======================= -->
+  <section id="need">
+    <p class="eyebrow"><span class="num">05</span> What we need from you</p>
+    <h2 class="sec-title">Pick a letter</h2>
+    <p class="sec-sub">
+      Nothing concrete from Ragnar yet, but we definitely want to hear from you. Once we know where
+      everyone stands we can build a backup plan that isn't disruptive or last minute and
+      <em>will</em> be epic and fun as hell.
+    </p>
+
+    <div class="ask">
+      <button class="opt" type="button" data-opt="A" aria-pressed="false">
+        <span class="stamp">Logged</span>
+        <div class="opt__l">A</div>
+        <div class="opt__t">In no matter what</div>
+        <div class="opt__d">Race, no race, monsoon, séance. You are getting in the van.</div>
+      </button>
+      <button class="opt" type="button" data-opt="B" aria-pressed="false">
+        <span class="stamp">Logged</span>
+        <div class="opt__l">B</div>
+        <div class="opt__t">In for the race only</div>
+        <div class="opt__d">Bib number or bust. Entirely reasonable. Slightly less fun.</div>
+      </button>
+      <button class="opt" type="button" data-opt="C" aria-pressed="false">
+        <span class="stamp">Logged</span>
+        <div class="opt__l">C</div>
+        <div class="opt__t">Still have questions</div>
+        <div class="opt__d">Send them. Genuinely. That is the entire point of this email.</div>
+      </button>
+    </div>
+
+    <div class="disclaimer">
+      <b>Note:</b> this button does nothing. It stores your answer in your own browser and tells no one.
+      There is no database, no form, no server. <b>Reply to Kelaine and Gibbs like an adult.</b>
+      That is still the only mechanism that works.
+    </div>
+  </section>
+
+  <!-- ======================= RECEIPTS ======================= -->
+  <section id="receipts">
+    <p class="eyebrow"><span class="num">06</span> Receipts</p>
+    <h2 class="sec-title">The source material</h2>
+    <p class="sec-sub">
+      The primary documents, lightly cleaned. Contact details removed on purpose &mdash; this page is
+      not a place to harvest anyone's inbox.
+    </p>
+
+    <details class="rec">
+      <summary>Exhibit A &mdash; the transmission, in full</summary>
+      <div class="rec__body">
+        <div class="rec__meta">
+          From: Kelaine<br>
+          Date: Wed, 5 Aug 2026, 2:58 PM ET<br>
+          Subject: Strangers 2026 &mdash; Update + Input/Feedback Needed!
+        </div>
+
+        <p>Hello Strangers!</p>
+
+        <p>Gibbs and I hopped on the phone yesterday because we heard through the grapevine (AKA gossip
+        queen (jk) Rebecca) that there are some rumors about upcoming Ragnar race cancellations. The
+        tl;dr of it all is that Ragnar canceled a couple races for August with no explanation, then a
+        former employee posted a video to Facebook with a hypothesis that they're going to cancel all of
+        August and September, and then Reddit started percolating with theories and pointless anxiety.</p>
+
+        <p>But for this team of resourceful champions, we are just trying to share info and make
+        contingency plans so we can maximize our funtime USA and minimize disruption to your lives.</p>
+
+        <h4>What to know</h4>
+        <ul>
+          <li>We don't know yet whether our race (Trail Wisconsin) is going to be canceled but wanted to
+          give y'all as much info as possible for transparency.</li>
+          <li>I emailed the Ragnar team yesterday and got a pretty thorough email back from them within
+          an hour (pasted below) but no concrete answers &mdash; I'm hoping we'll know more in the next
+          week or so.</li>
+          <li>If you/we book anything, best to do it refundable in case your/others' plans change.</li>
+          <li>Annoyingly, we still have 3&ndash;4 runner slots to fill for the race, so we're
+          simultaneously balancing the need to recruit with the possibility of a cancellation. As always,
+          we'll figure it out (or I will greedily run every leg that people don't want).</li>
+        </ul>
+
+        <h4>Most importantly</h4>
+        <p><strong>Whether the race is on or off, Gibbs and I plan to go to the Midwest for a Strangers
+        weekend, and we would love if literally all of you joined.</strong> Wisconsin, Illinois, WHEREVER.</p>
+
+        <p>Even if it's not glamping and running a Ragnar, we will plan a stellar away weekend that
+        involves custom swag, outdoor activities (running? kayaking? dancing in the moonlight?), calling
+        Gibbs a praying mantis, eating too many snacks, finding excellent bakeries, and maybe even a
+        séance to contact the spirits of former Ragnar teammates (Brian still not invited).</p>
+
+        <p>While I would prefer that Ragnar comes through with the race, I am SUPER confident that we can
+        and will make an incredible weekend with this crew.</p>
+
+        <h4>What we don't need/want</h4>
+        <p>My personal nightmare is that this email causes a ripple effect in which you second-guess
+        whether you even want to do the race. (I promise, you do.) And then Ragnar is like GAME ON! But
+        you've pulled out and so the team is now composed of me, Gibbs, a few seedy drifters we pick up
+        on the black market, and a raccoon named Delores. The goal is not to send shockwaves of panic.
+        The goal here is to just share what's happening and then make a solid backup plan with consenting
+        adults.</p>
+
+        <h4>What we need from you</h4>
+        <p>We still don't know anything concrete from Ragnar, but we definitely want to hear from you.
+        <strong>Please reply to me/Gibbs and let us know where you fall:</strong></p>
+        <ul>
+          <li><strong>A)</strong> IN no matter what</li>
+          <li><strong>B)</strong> IN for the race only</li>
+          <li><strong>C)</strong> Still have questions (send those!)</li>
+        </ul>
+
+        <p>Once we have a better idea of where everyone stands, we can start to figure out a backup plan
+        that won't be disruptive or last minute and WILL be epic and fun as hell. Because the truth is,
+        we fucking love you guys, always want to see you, and KNOW we can make that happen.</p>
+
+        <p>We didn't throw this curve ball, but we still know how to drive in runs.</p>
+
+        <p>HAVE A GREAT WEDNESDAY, STRANGERS!</p>
+
+        <div class="rec__sig">Love, Kelaine</div>
+      </div>
+    </details>
+
+    <details class="rec">
+      <summary>Exhibit B &mdash; the letter to Ragnar</summary>
+      <div class="rec__body">
+        <div class="rec__meta">From: Kelaine &mdash; To: the Ragnar team &mdash; 4 Aug 2026</div>
+
+        <p>My friend (Gibbs, CC'd) and I each have a team registered for Ragnar Trail Wisconsin
+        this September, and a glamping reservation for each:</p>
+        <ul>
+          <li>TEAM #140 (Never Get In A Van With Strangers)</li>
+          <li>TEAM #150 (Never Get In A Van With Strangers 2: Electric Boogaloo)</li>
+        </ul>
+
+        <p>Moreover, we are repeat and annual customers of the Ragnar experience, having run about a
+        dozen of these amazing races across the country since 2013, expanding to two teams that mark
+        their calendars and save their dates especially for Ragnar every year. We are big fans and
+        supporters of what y'all do and know how much work and effort goes into building and maintaining
+        this community and putting on races of this magnitude. Truly, thank you.</p>
+
+        <p>We have heard some unfortunate rumors that the Trail Wisconsin race is going to be canceled.
+        We are hoping you can provide some concrete information and assurances that the race is going to
+        happen, or clarity around what the gameplan is so we can inform our team appropriately.
+        <strong>On a human note, we have teammates who are planning to fly in from Hawaii and New
+        Zealand, and a number of parents who are arranging childcare.</strong> Plus there are countless
+        other logistics to arrange with transportation and accommodations before and after the race, so
+        we're hoping to save on costs and time. I know we are not unique in this regard &mdash; this is
+        probably just about every team.</p>
+
+        <p>We have a couple questions for you:</p>
+        <ul>
+          <li>Can you share an update on the gameplan and when decisions will be made (aside from
+          weather... we understand it's not possible to predict that far in advance)?</li>
+          <li>Can you provide clarity on the refund policy in the event of a cancellation?</li>
+        </ul>
+
+        <p>I appreciate your help and hope we get the chance to run and see you and the Ragnar community
+        next month. Thanks for all you do!</p>
+
+        <div class="rec__sig">Kelaine</div>
+      </div>
+    </details>
+
+    <details class="rec">
+      <summary>Exhibit C &mdash; Ragnar's reply</summary>
+      <div class="rec__body">
+        <div class="rec__meta">From: Cody, Trail and Field Operations Manager, Ragnar &mdash; 4 Aug 2026<br>Reproduced in good faith. He answered in under an hour.</div>
+
+        <p>Hi Kelaine,</p>
+
+        <p>Thanks for reaching out! And thanks for your continued participation in Ragnar for so many
+        years. I am sure our paths have crossed at some point.</p>
+
+        <p>Transparently, I don't have the final answers yet on what events may or may not happen for the
+        rest of this season. There is a very real possibility that Trail Wisconsin does not happen,
+        however, it has not yet officially been cancelled. We're awaiting further guidance and updates
+        from the executive leadership at Ragnar's parent company, Fitlab, on how we are able to proceed.</p>
+
+        <p>We may get updates as soon as this week or by early next week. I can tell you that Fitlab
+        executive leadership is doing everything possible to ensure the rest of our season happens. We
+        will have to have some guidance soon as our team is still fully planning to deliver other events
+        happening this month. I totally understand all of the logistics you and your teammates need to
+        prepare. Honestly, I would suggest waiting to book anything that is non-cancellable if you can
+        until you receive more information from us.</p>
+
+        <p>Know that myself, as the operations leader in Ragnar, along with our race directors, are
+        pushing as hard as we can for clarity to pass along to our community. As soon as we have definite
+        answers, we will pass those along. I do expect this will be soon.</p>
+
+        <p>If Wisconsin or any of our events are officially cancelled, we will email you with options.
+        With other cancellations, we have offered a free transfer to another Ragnar event, plus an
+        additional free team. Or teams can opt for a full refund. I expect Fitlab leadership will offer
+        the same options again if there are more cancellations.</p>
+
+        <p>I really appreciate your dedication to Ragnar and your patience here. I am hopeful we will be
+        able to provide some clarity in the next week or so.</p>
+
+        <div class="rec__sig">Cody</div>
+      </div>
+    </details>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <p class="kicker">We didn't throw this curve ball, but we still know how to <em>drive in runs.</em></p>
+    <div class="foot-love">We f***ing love you guys.</div>
+    <div class="foot-note">Never Get In A Van With Strangers &mdash; Teams #140 &amp; #150 &mdash; since 2013</div>
+  </div>
+</footer>
+
+<div class="unleash-bar">Threat level: Delores unleashed &mdash; she has been added to both teams &mdash; nobody consulted the drifters</div>
+
+<script>
+/* ============================================================
+   CONFIG — the only things you should need to change
+   ============================================================ */
+var CONFIG = {
+  // PROVISIONAL. Replace with the real Trail Wisconsin start once Ragnar confirms.
+  // Format: YYYY-MM-DDTHH:MM:SS with the offset (-05:00 = Central Daylight Time).
+  raceISO: "2026-09-11T09:00:00-05:00"
+};
+
+/* ---------- countdown ---------- */
+(function(){
+  var target = new Date(CONFIG.raceISO).getTime();
+  var el = { d: document.getElementById('d'), h: document.getElementById('h'),
+             m: document.getElementById('m'), s: document.getElementById('s') };
+  var pad = function(n){ return String(n).padStart(2,'0'); };
+
+  function tick(){
+    var diff = target - Date.now();
+    if (isNaN(target)) { el.d.textContent = '??'; return; }
+    if (diff <= 0) {
+      el.d.textContent = '00'; el.h.textContent = '00';
+      el.m.textContent = '00'; el.s.textContent = '00';
+      var cap = document.querySelector('.clock__cap');
+      if (cap) cap.innerHTML = "<b>It is happening.</b> Or it isn't. Check your email.";
+      return;
+    }
+    var sec = Math.floor(diff / 1000);
+    el.d.textContent = pad(Math.floor(sec / 86400));
+    el.h.textContent = pad(Math.floor(sec / 3600) % 24);
+    el.m.textContent = pad(Math.floor(sec / 60) % 60);
+    el.s.textContent = pad(sec % 60);
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+
+/* ---------- threat dial ---------- */
+(function(){
+  var arc = document.getElementById('arcFill');
+  var needle = document.getElementById('needleG');
+  // 0 = calm, 1 = max. Delores sits at 0.93.
+  function setThreat(v){
+    if (arc) arc.style.strokeDashoffset = String(314 - (314 * v));
+    if (needle) needle.style.transform = 'rotate(' + (-88 + (176 * v)) + 'deg)';
+  }
+  setThreat(0);
+  setTimeout(function(){ setThreat(0.93); }, 500);
+  window.__setThreat = setThreat;
+})();
+
+/* ---------- A / B / C ---------- */
+(function(){
+  var KEY = 'strangers2026.answer';
+  var opts = Array.prototype.slice.call(document.querySelectorAll('.opt'));
+
+  function paint(v){
+    opts.forEach(function(b){
+      b.setAttribute('aria-pressed', String(b.dataset.opt === v));
+    });
+  }
+
+  try { var saved = localStorage.getItem(KEY); if (saved) paint(saved); } catch(e){}
+
+  opts.forEach(function(b){
+    b.addEventListener('click', function(){
+      var v = b.dataset.opt;
+      var already = b.getAttribute('aria-pressed') === 'true';
+      if (already) { paint(null); try { localStorage.removeItem(KEY); } catch(e){} return; }
+      paint(v);
+      try { localStorage.setItem(KEY, v); } catch(e){}
+    });
+  });
+})();
+
+/* ---------- Delores easter egg: five clicks ---------- */
+(function(){
+  var img = document.getElementById('delores');
+  if (!img) return;
+  var n = 0;
+  img.addEventListener('click', function(){
+    n++;
+    if (n < 5) return;
+    document.body.classList.add('unleashed');
+    var w = document.getElementById('threatWord');
+    var s = document.getElementById('threatSub');
+    if (w) w.textContent = 'Unleashed';
+    if (s) s.textContent = 'Raccoon — now affiliated';
+    if (window.__setThreat) window.__setThreat(1);
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+# Raw source material — never commit. Contains personal email addresses,
+# phone numbers, and mailing addresses lifted straight from mail clients.
+*.eml
+*.msg
+_source/
+
+# Original, un-processed drops. Copy what you need into a site's assets/ folder.
+/Bear_Down_Strangers.jpeg
+
+# OS / editor noise
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/
+*.swp
