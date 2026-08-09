@@ -285,6 +285,43 @@ section + section{ border-top:1px solid var(--line); }
 .menu__row--x .menu__n{ color:var(--rust); }
 
 /* ============================================================
+   FIELD REPORT / DISPATCH
+   ============================================================ */
+.dispatch{
+  margin:44px 0 0;
+  border:1px solid var(--line-hot);
+  background:linear-gradient(180deg, var(--panel-2), var(--panel));
+  border-radius:3px; overflow:hidden;
+  box-shadow:0 40px 90px -60px #000;
+}
+.dispatch__pic{ position:relative; background:#000; line-height:0; }
+.dispatch__pic img{ width:100%; height:auto; display:block; filter:saturate(.97) contrast(1.04); }
+.dispatch__stamp{
+  position:absolute; top:14px; left:14px;
+  font-family:var(--mono); font-size:10px; letter-spacing:.22em; text-transform:uppercase;
+  background:rgba(10,9,8,.8); border:1px solid var(--gold-dim); color:var(--gold);
+  padding:6px 11px; border-radius:2px; line-height:1.4;
+}
+.dispatch__cap{ padding:clamp(20px,3vw,30px); border-top:1px solid var(--line); }
+.dgrid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:0 30px; margin:0; }
+.dgrid div{
+  display:flex; justify-content:space-between; align-items:baseline; gap:14px;
+  padding:10px 0; border-bottom:1px solid var(--line);
+  font-family:var(--mono); font-size:12px;
+}
+.dgrid dt{ color:var(--bone-3); letter-spacing:.14em; text-transform:uppercase; white-space:nowrap; }
+.dgrid dd{ margin:0; color:var(--bone); text-align:right; }
+.dgrid dd b{ color:var(--gold); font-weight:400; }
+
+.pull{
+  margin:40px 0 0; padding-left:20px;
+  border-left:2px solid var(--gold-dim);
+  font-family:var(--display); font-size:clamp(21px,3.6vw,34px);
+  color:var(--bone); line-height:1.08; max-width:26ch;
+}
+.pull em{ font-style:normal; color:var(--gold); }
+
+/* ============================================================
    NIGHTMARE ROSTER
    ============================================================ */
 .roster{
@@ -480,11 +517,13 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
     <span>Race status: unconfirmed</span>
     <span>Threat level: Delores</span>
     <span>Brian: still not invited</span>
+    <span>Field report: one (1) unaffiliated Free Candy van, sighted</span>
     <span>Incoming transmission &mdash; 05 Aug 2026, 14:58 ET &mdash; from: Kelaine</span>
     <span>Subject: Strangers 2026 &mdash; Update + Input/Feedback Needed!</span>
     <span>Race status: unconfirmed</span>
     <span>Threat level: Delores</span>
     <span>Brian: still not invited</span>
+    <span>Field report: one (1) unaffiliated Free Candy van, sighted</span>
   </div>
 </div>
 
@@ -712,9 +751,42 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
     </div>
   </section>
 
+  <!-- ======================= FIELD REPORT ======================= -->
+  <section id="field">
+    <p class="eyebrow"><span class="num">04</span> Field report</p>
+    <h2 class="sec-title">Sighting<br>in the wild</h2>
+    <p class="sec-sub">
+      The first race this team ever ran together was Hood To Coast, in Oregon. The van was decorated
+      around a single theme: offering candy to strangers. That van is the reason there is a team name
+      at all. Yesterday, at a county fair, Dave and Jess found this parked on a trailer.
+    </p>
+
+    <figure class="dispatch">
+      <div class="dispatch__pic">
+        <span class="dispatch__stamp">Exhibit D &mdash; unaffiliated</span>
+        <img src="assets/free-candy-van.jpeg"
+             alt="A mint green Chevrolet Express van loaded on a flatbed trailer at dusk, hand-painted with FREE CANDY in orange, a large number 55, the words 'If you ain't 1st you're last', and EAT EXHAUST across the rear doors.">
+      </div>
+      <figcaption class="dispatch__cap">
+        <dl class="dgrid">
+          <div><dt>Subject</dt><dd>Chevrolet Express, mint green, No. 55</dd></div>
+          <div><dt>Legible text</dt><dd><b>"Free Candy"</b> &middot; "Eat Exhaust"</dd></div>
+          <div><dt>Posture</dt><dd>Trailered, derby-bound, at dusk</dd></div>
+          <div><dt>Reported by</dt><dd>Dave and Jess, in the field</dd></div>
+          <div><dt>Known links to this team</dt><dd>None whatsoever</dd></div>
+          <div><dt>Relevance</dt><dd><b>Total</b></dd></div>
+        </dl>
+      </figcaption>
+    </figure>
+
+    <p class="pull">
+      Ragnar can cancel a race.<br>It cannot cancel <em>the bit.</em>
+    </p>
+  </section>
+
   <!-- ======================= NIGHTMARE ROSTER ======================= -->
   <section id="nightmare">
-    <p class="eyebrow"><span class="num">04</span> What we don't need or want</p>
+    <p class="eyebrow"><span class="num">05</span> What we don't need or want</p>
     <h2 class="sec-title">The nightmare roster</h2>
     <p class="sec-sub">
       The stated personal nightmare: this email spooks everyone into pulling out, then Ragnar says
@@ -806,7 +878,7 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
 
   <!-- ======================= THE ASK ======================= -->
   <section id="need">
-    <p class="eyebrow"><span class="num">05</span> What we need from you</p>
+    <p class="eyebrow"><span class="num">06</span> What we need from you</p>
     <h2 class="sec-title">Pick a letter</h2>
     <p class="sec-sub">
       Nothing concrete from Ragnar yet, but we definitely want to hear from you. Once we know where
@@ -844,7 +916,7 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
 
   <!-- ======================= RECEIPTS ======================= -->
   <section id="receipts">
-    <p class="eyebrow"><span class="num">06</span> Receipts</p>
+    <p class="eyebrow"><span class="num">07</span> Receipts</p>
     <h2 class="sec-title">The source material</h2>
     <p class="sec-sub">
       The primary documents, lightly cleaned. Contact details removed on purpose &mdash; this page is

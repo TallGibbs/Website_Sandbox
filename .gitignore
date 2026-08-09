@@ -4,8 +4,15 @@
 *.msg
 _source/
 
-# Original, un-processed drops. Copy what you need into a site's assets/ folder.
-/Bear_Down_Strangers.jpeg
+# Raw photo drops at the repo root. Phone photos carry GPS coordinates and
+# timestamps in EXIF, so never commit one directly. Process it (rotate, crop,
+# strip EXIF) into a site's assets/ folder and commit that instead.
+/*.jpeg
+/*.jpg
+/*.png
+/*.heic
+/*.mov
+/*.mp4
 
 # OS / editor noise
 Thumbs.db
