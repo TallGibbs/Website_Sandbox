@@ -498,7 +498,8 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
       <span class="tag tag--gold">Team #140</span>
       <span class="tag">Team #150 &mdash; Electric Boogaloo</span>
       <span class="tag">Ragnar Trail Wisconsin</span>
-      <span class="tag">September 2026</span>
+      <span class="tag">Sept 18&ndash;19, 2026</span>
+      <span class="tag">Nine Mile Forest, Wausau</span>
     </div>
   </header>
 
@@ -528,8 +529,9 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
             <div class="unit"><div class="unit__n" id="s">--</div><div class="unit__l">Seconds</div></div>
           </div>
           <p class="clock__cap">
-            <b>Provisional.</b> Ragnar has not confirmed anything, including this date.
-            Book refundable. Set the real one in <code>CONFIG.raceISO</code> at the bottom of this file.
+            <b>Sept 18&ndash;19</b> at Nine Mile Forest, Wausau &mdash; straight from Ragnar's own
+            race page, which is still selling entries. No per-team start time published, so this
+            counts to Friday morning. The date is real. Whether the race is, is a separate question.
           </p>
         </div>
       </div>
@@ -1020,9 +1022,15 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
    CONFIG — the only things you should need to change
    ============================================================ */
 var CONFIG = {
-  // PROVISIONAL. Replace with the real Trail Wisconsin start once Ragnar confirms.
-  // Format: YYYY-MM-DDTHH:MM:SS with the offset (-05:00 = Central Daylight Time).
-  raceISO: "2026-09-11T09:00:00-05:00"
+  // Ragnar Trail Wisconsin: September 18-19, 2026, Nine Mile County Forest
+  // Recreation Area, Wausau WI. Confirmed from runragnar.com's own race page
+  // on 2026-08-08, cross-checked against runguides.com and gotrail.run.
+  //
+  // Ragnar has NOT published a per-team start time (Trail races use staggered
+  // starts; the number lives in the 2026 Race Guide). So this anchors to Friday
+  // morning Central and the label reads "race weekend", not "your start".
+  // Format: YYYY-MM-DDTHH:MM:SS with offset (-05:00 = Central Daylight Time).
+  raceISO: "2026-09-18T09:00:00-05:00"
 };
 
 /* ---------- countdown ---------- */
