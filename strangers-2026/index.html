@@ -624,7 +624,7 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
 
   <!-- ======================= MASTHEAD ======================= -->
   <header class="mast">
-    <div class="mast__kicker">Situation board &mdash; established 2013 &mdash; approx. twelve Ragnars deep</div>
+    <div class="mast__kicker">Situation board &mdash; established 2012 &mdash; approx. twelve Ragnars deep</div>
     <h1 class="mast__title">Never Get In<br>A Van With<br><em>Strangers</em></h1>
     <div class="mast__teams">
       <span class="tag tag--gold">Team #140</span>
@@ -655,7 +655,7 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
         </p>
 
         <div class="clock">
-          <div class="readout-label">Time until race weekend</div>
+          <div class="readout-label">Time until our first start</div>
           <div class="clock__digits" id="clock">
             <div class="unit"><div class="unit__n" id="d">--</div><div class="unit__l">Days</div></div>
             <div class="unit"><div class="unit__n" id="h">--</div><div class="unit__l">Hours</div></div>
@@ -663,10 +663,10 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
             <div class="unit"><div class="unit__n" id="s">--</div><div class="unit__l">Seconds</div></div>
           </div>
           <p class="clock__cap">
-            <b>Sept 18&ndash;19</b> at Nine Mile Forest, Wausau. This still counts to Friday morning
-            Central rather than to our wave, because Ragnar staggers the trail starts. The date is
-            real, the race is real, and the only thing left unconfirmed is what time three of us
-            get through Chicago.
+            <b>8:00 AM Central, Friday 18 Sept</b> &mdash; our first team off the line at Nine Mile
+            Forest, Wausau. The second team follows in a staggered wave behind it, the way Ragnar
+            runs its trail starts. The date is real, the time is real, and the only thing still
+            unconfirmed is what time three of us get through Chicago.
           </p>
         </div>
       </div>
@@ -1389,7 +1389,7 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
   <div class="wrap">
     <p class="kicker">We didn't throw this curve ball, but we still know how to <em>drive in runs.</em></p>
     <div class="foot-love">We f***ing love you guys.</div>
-    <div class="foot-note">Never Get In A Van With Strangers &mdash; Teams #140 &amp; #150 &mdash; since 2013</div>
+    <div class="foot-note">Never Get In A Van With Strangers &mdash; Teams #140 &amp; #150 &mdash; since 2012</div>
   </div>
 </footer>
 
@@ -1404,12 +1404,12 @@ var CONFIG = {
   // Recreation Area, Wausau WI. Confirmed from runragnar.com's own race page
   // on 2026-08-08, cross-checked against runguides.com and gotrail.run.
   //
-  // Race CONFIRMED and on as of 17 Sept 2026. Ragnar still has not published a
-  // per-team start time (Trail races use staggered starts; the number lives in
-  // the 2026 Race Guide), so this stays anchored to Friday morning Central and
-  // the label still reads "race weekend", not "your start".
+  // Race CONFIRMED and on as of 17 Sept 2026. Our first team's start time is
+  // 8:00 AM Friday, local time at Nine Mile Forest -- that is US Central, and
+  // 18 Sept 2026 is inside daylight saving, so the offset is -05:00 (CDT).
+  // The second team goes off in a staggered wave behind it, per Ragnar Trail.
   // Format: YYYY-MM-DDTHH:MM:SS with offset (-05:00 = Central Daylight Time).
-  raceISO: "2026-09-18T09:00:00-05:00"
+  raceISO: "2026-09-18T08:00:00-05:00"
 };
 
 /* ---------- countdown ---------- */
@@ -1426,7 +1426,7 @@ var CONFIG = {
       el.d.textContent = '00'; el.h.textContent = '00';
       el.m.textContent = '00'; el.s.textContent = '00';
       var cap = document.querySelector('.clock__cap');
-      if (cap) cap.innerHTML = "<b>It is happening.</b> Or it isn't. Check your email.";
+      if (cap) cap.innerHTML = "<b>That is the start.</b> Runner one is on the trail.";
       return;
     }
     var sec = Math.floor(diff / 1000);
