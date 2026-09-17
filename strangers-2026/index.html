@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Strangers 2026 — Delores Threat Board</title>
-<meta name="description" content="Situation board for Never Get In A Van With Strangers. Race status: unconfirmed. Threat level: Delores.">
+<meta name="description" content="Situation board for Never Get In A Van With Strangers. Race status: confirmed. Weather status: thunderstorms over Chicago. Threat level: Delores.">
 <meta name="robots" content="noindex, nofollow">
 <style>
 /* ============================================================
@@ -197,9 +197,94 @@ section + section{ border-top:1px solid var(--line); }
 }
 .clock__cap b{ color:var(--gold); font-weight:600; }
 
+/* race is on */
+.status-line--go{ color:var(--moss); }
+.threat-word--gold{ color:var(--gold); }
+
+/* archive stamp on the August sections */
+.superseded{
+  display:inline-block; margin-top:20px;
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--moss); border:1px solid var(--moss); background:rgba(127,155,78,.08);
+  padding:7px 13px; border-radius:2px;
+}
+.superseded--amber{ color:var(--gold); border-color:var(--gold-dim); background:rgba(201,162,76,.08); }
+
+/* ============================================================
+   ARRIVALS MANIFEST
+   ============================================================ */
+.mani{ margin-top:44px; border-top:1px solid var(--line); }
+.mani__row{
+  display:grid;
+  grid-template-columns: minmax(0,1.5fr) minmax(0,1fr) 92px 148px;
+  gap:6px 20px; align-items:baseline;
+  padding:16px 4px; border-bottom:1px solid var(--line);
+  transition:background .18s, padding-left .18s;
+}
+.mani__row:not(.mani__row--hd):hover{ background:rgba(201,162,76,.05); padding-left:14px; }
+.mani__row--hd{
+  font-family:var(--mono); font-size:10px; letter-spacing:.24em; text-transform:uppercase;
+  color:var(--bone-3); padding:0 4px 12px;
+}
+.mani__row--hd > div{ white-space:nowrap; }
+.mani__from{ font-family:var(--display); font-size:clamp(19px,3.2vw,28px); color:var(--bone); line-height:1.05; }
+.mani__who{ font-family:var(--mono); font-size:12.5px; color:var(--bone-2); }
+.mani__mi{ font-family:var(--mono); font-size:12.5px; color:var(--bone-3); font-variant-numeric:tabular-nums; text-align:right; }
+.mani__st{ text-align:right; }
+.chip{
+  display:inline-block;
+  font-family:var(--mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase;
+  border:1px solid var(--line-hot); color:var(--bone-2);
+  padding:5px 10px; border-radius:2px; white-space:nowrap;
+}
+.chip--ok{ color:var(--moss); border-color:var(--moss); background:rgba(127,155,78,.08); }
+.chip--hold{ color:var(--rust-glow); border-color:var(--rust); background:rgba(192,74,42,.1); animation:pulse 2.2s ease-in-out infinite; }
+.chip--here{ color:var(--gold); border-color:var(--gold-dim); background:rgba(201,162,76,.07); }
+.mani__foot{
+  display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap;
+  padding:18px 4px 0;
+  font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--bone-3);
+}
+.mani__foot b{ color:var(--gold); font-weight:400; }
+/* ============================================================
+   RECRUITMENT — the welcome panel
+   ============================================================ */
+.welcomes{
+  display:grid; gap:14px; margin-top:44px;
+  grid-template-columns:repeat(auto-fit, minmax(330px,1fr));
+}
+.welcomes .welcome{ margin-top:0; }
+.welcome{
+  margin-top:44px;
+  border:1px solid var(--gold-dim);
+  background:linear-gradient(180deg, var(--panel-2), var(--panel));
+  border-radius:3px;
+  padding:clamp(24px,4.4vw,46px);
+  box-shadow:0 0 90px -50px rgba(201,162,76,.55);
+}
+.welcome__k{
+  font-family:var(--mono); font-size:10px; letter-spacing:.26em;
+  text-transform:uppercase; color:var(--gold);
+}
+.welcome__n{
+  font-family:var(--display); font-size:clamp(38px,5.8vw,64px);
+  color:var(--gold); line-height:.9; margin-top:12px;
+}
+.welcome__b{ color:var(--bone-2); font-size:15px; margin:22px 0 0; max-width:58ch; }
+.welcome .dgrid{ margin-top:28px; border-top:1px solid var(--line); }
+
+@media (max-width:760px){
+  .mani__row{ grid-template-columns: 1fr auto; }
+  .mani__from{ grid-column:1; }
+  .mani__st{ grid-column:2; grid-row:1 / span 3; align-self:center; }
+  .mani__who{ grid-column:1; }
+  .mani__mi{ grid-column:1; text-align:left; }
+  .mani__row--hd{ display:none; }
+}
+
 /* roster pips */
 .pips{ display:flex; gap:7px; flex-wrap:wrap; }
-.pips{ gap:5px; }
+.pips{ display:grid; grid-template-columns:repeat(8, 20px); gap:5px; justify-content:start; }
 .pip{
   width:20px; height:30px; border-radius:2px;
   border:1px solid var(--line-hot);
@@ -512,18 +597,26 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
 
 <div class="ticker" role="status" aria-label="Transmission log">
   <div class="ticker__track">
-    <span>Incoming transmission &mdash; 05 Aug 2026, 14:58 ET &mdash; from: Kelaine</span>
-    <span>Subject: Strangers 2026 &mdash; Update + Input/Feedback Needed!</span>
-    <span>Race status: unconfirmed</span>
+    <span>Race status: <b>CONFIRMED</b> &mdash; Ragnar Trail Wisconsin is ON</span>
+    <span>Sept 18&ndash;19, 2026 &mdash; Nine Mile Forest, Wausau</span>
+    <span>Format: Ragnar Trail &mdash; glamping, not vans</span>
+    <span>Advisory &mdash; 17 Sept 2026 &mdash; thunderstorms over Chicago</span>
+    <span>Weather hold: Newark &middot; Detroit &middot; Raleigh</span>
+    <span>Inbound: Hawaii &times;3 &middot; New Zealand &middot; Portland</span>
+    <span>Roster: 13 of 16 &mdash; set</span>
+    <span>Welcome IZ Torres and Sarah &mdash; newest strangers</span>
     <span>Threat level: Delores</span>
     <span>Brian: still not invited</span>
-    <span>Field report: one (1) unaffiliated Free Candy van, sighted</span>
-    <span>Incoming transmission &mdash; 05 Aug 2026, 14:58 ET &mdash; from: Kelaine</span>
-    <span>Subject: Strangers 2026 &mdash; Update + Input/Feedback Needed!</span>
-    <span>Race status: unconfirmed</span>
+    <span>Race status: <b>CONFIRMED</b> &mdash; Ragnar Trail Wisconsin is ON</span>
+    <span>Sept 18&ndash;19, 2026 &mdash; Nine Mile Forest, Wausau</span>
+    <span>Format: Ragnar Trail &mdash; glamping, not vans</span>
+    <span>Advisory &mdash; 17 Sept 2026 &mdash; thunderstorms over Chicago</span>
+    <span>Weather hold: Newark &middot; Detroit &middot; Raleigh</span>
+    <span>Inbound: Hawaii &times;3 &middot; New Zealand &middot; Portland</span>
+    <span>Roster: 13 of 16 &mdash; set</span>
+    <span>Welcome IZ Torres and Sarah &mdash; newest strangers</span>
     <span>Threat level: Delores</span>
     <span>Brian: still not invited</span>
-    <span>Field report: one (1) unaffiliated Free Candy van, sighted</span>
   </div>
 </div>
 
@@ -531,7 +624,7 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
 
   <!-- ======================= MASTHEAD ======================= -->
   <header class="mast">
-    <div class="mast__kicker">Situation board &mdash; established 2013 &mdash; approx. twelve Ragnars deep</div>
+    <div class="mast__kicker">Situation board &mdash; established 2012 &mdash; approx. twelve Ragnars deep</div>
     <h1 class="mast__title">Never Get In<br>A Van With<br><em>Strangers</em></h1>
     <div class="mast__teams">
       <span class="tag tag--gold">Team #140</span>
@@ -539,6 +632,7 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
       <span class="tag">Ragnar Trail Wisconsin</span>
       <span class="tag">Sept 18&ndash;19, 2026</span>
       <span class="tag">Nine Mile Forest, Wausau</span>
+      <span class="tag">Trail relay &mdash; glamping, no vans</span>
     </div>
   </header>
 
@@ -547,20 +641,21 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
     <div class="board__head">
       <span class="lamp"><i></i> Live</span>
       <span class="spacer"></span>
-      <span>Board updated 05 Aug 2026</span>
+      <span>Board updated 17 Sept 2026 &mdash; race day minus one</span>
     </div>
 
     <div class="board__grid">
       <div class="board__main">
         <div class="readout-label">Race status</div>
-        <div class="status-line">Unconfirmed</div>
+        <div class="status-line status-line--go">Game on</div>
         <p class="status-note">
-          Not cancelled. Not confirmed. Ragnar is awaiting guidance from executive leadership
-          at its parent company. Everyone else is awaiting Ragnar.
+          Confirmed. Ragnar Trail Wisconsin is happening, at Nine Mile Forest, tomorrow.
+          The nightmare roster stays hypothetical. Thirteen runners across two teams,
+          a glamping site apiece, and everybody already in motion.
         </p>
 
         <div class="clock">
-          <div class="readout-label">Time until race weekend</div>
+          <div class="readout-label">Time until our first start</div>
           <div class="clock__digits" id="clock">
             <div class="unit"><div class="unit__n" id="d">--</div><div class="unit__l">Days</div></div>
             <div class="unit"><div class="unit__n" id="h">--</div><div class="unit__l">Hours</div></div>
@@ -568,27 +663,36 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
             <div class="unit"><div class="unit__n" id="s">--</div><div class="unit__l">Seconds</div></div>
           </div>
           <p class="clock__cap">
-            <b>Sept 18&ndash;19</b> at Nine Mile Forest, Wausau &mdash; straight from Ragnar's own
-            race page, which is still selling entries. No per-team start time published, so this
-            counts to Friday morning. The date is real. Whether the race is, is a separate question.
+            <b>8:00 AM Central, Friday 18 Sept</b> &mdash; our first team off the line at Nine Mile
+            Forest, Wausau. The second team follows in a staggered wave behind it, the way Ragnar
+            runs its trail starts. The date is real, the time is real, and the only thing still
+            unconfirmed is what time three of us get through Chicago.
           </p>
         </div>
       </div>
 
       <aside class="board__side">
         <div>
-          <div class="readout-label">Roster &mdash; Team #140</div>
-          <div class="pips" aria-label="Four confirmed runners, one probable, three open slots">
+          <div class="readout-label">Roster &mdash; Teams #140 &amp; #150</div>
+          <div class="pips" aria-label="Thirteen runners confirmed of sixteen possible slots">
             <span class="pip pip--on"></span>
             <span class="pip pip--on"></span>
             <span class="pip pip--on"></span>
             <span class="pip pip--on"></span>
-            <span class="pip pip--maybe"></span>
+            <span class="pip pip--on"></span>
+            <span class="pip pip--on"></span>
+            <span class="pip pip--on"></span>
+            <span class="pip pip--on"></span>
+            <span class="pip pip--on"></span>
+            <span class="pip pip--on"></span>
+            <span class="pip pip--on"></span>
+            <span class="pip pip--on"></span>
+            <span class="pip pip--on"></span>
             <span class="pip pip--open"></span>
             <span class="pip pip--open"></span>
             <span class="pip pip--open"></span>
           </div>
-          <div class="pips__cap"><b>3&ndash;4 slots open.</b> Recruiting into a maybe.</div>
+          <div class="pips__cap"><b>13 of 16.</b> Not full. Set, which is the part that counts.</div>
         </div>
 
         <div>
@@ -614,18 +718,217 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
           <div class="threat-word" id="threatWord">Delores</div>
           <div class="threat-sub" id="threatSub">Raccoon &mdash; unaffiliated</div>
         </div>
+
+        <div>
+          <div class="readout-label">Travel status &mdash; 17 Sept</div>
+          <div class="threat-word threat-word--gold">Three held</div>
+          <div class="threat-sub">Newark &middot; Detroit &middot; Raleigh &mdash; thunderstorms</div>
+        </div>
       </aside>
     </div>
   </div>
 
+  <!-- ======================= INBOUND MANIFEST ======================= -->
+  <section id="inbound">
+    <p class="eyebrow"><span class="num">01</span> Inbound</p>
+    <h2 class="sec-title">Everybody is<br>already moving</h2>
+    <p class="sec-sub">
+      Ragnar confirmed it, the roster is set at thirteen, and as of this morning this team is
+      converging on one midwestern forest from a genuinely stupid number of directions. Hawaii sent three. New Zealand
+      sent one. Somebody is coming from Portland. The rest of you have the easiest commute of your
+      lives and we expect you to gloat about it.
+    </p>
+
+    <div class="mani">
+      <div class="mani__row mani__row--hd">
+        <div>Origin</div>
+        <div>Who</div>
+        <div class="mani__mi">Approx. mi</div>
+        <div class="mani__st">Status</div>
+      </div>
+
+      <div class="mani__row">
+        <div class="mani__from">Hawaii</div>
+        <div class="mani__who">Three of ours &mdash; incl. IZ Torres</div>
+        <div class="mani__mi">~4,200</div>
+        <div class="mani__st"><span class="chip chip--ok">No delay reported</span></div>
+      </div>
+
+      <div class="mani__row">
+        <div class="mani__from">New Zealand</div>
+        <div class="mani__who">One of ours, absurdly</div>
+        <div class="mani__mi">~8,000</div>
+        <div class="mani__st"><span class="chip chip--ok">No delay reported</span></div>
+      </div>
+
+      <div class="mani__row">
+        <div class="mani__from">Portland, OR</div>
+        <div class="mani__who">One of ours</div>
+        <div class="mani__mi">~1,740</div>
+        <div class="mani__st"><span class="chip chip--ok">No delay reported</span></div>
+      </div>
+
+      <div class="mani__row">
+        <div class="mani__from">Newark, NJ</div>
+        <div class="mani__who">Gibbs</div>
+        <div class="mani__mi">~720</div>
+        <div class="mani__st"><span class="chip chip--hold">Weather hold</span></div>
+      </div>
+
+      <div class="mani__row">
+        <div class="mani__from">Raleigh, NC</div>
+        <div class="mani__who">Josh</div>
+        <div class="mani__mi">~640</div>
+        <div class="mani__st"><span class="chip chip--hold">Weather hold</span></div>
+      </div>
+
+      <div class="mani__row">
+        <div class="mani__from">Charlotte, NC</div>
+        <div class="mani__who">Sarah &mdash; Jess Schroeder's sister</div>
+        <div class="mani__mi">~600</div>
+        <div class="mani__st"><span class="chip chip--here">Landed &mdash; now local</span></div>
+      </div>
+
+      <div class="mani__row">
+        <div class="mani__from">Detroit, MI</div>
+        <div class="mani__who">Kelaine</div>
+        <div class="mani__mi">~240</div>
+        <div class="mani__st"><span class="chip chip--hold">Weather hold</span></div>
+      </div>
+
+      <div class="mani__row">
+        <div class="mani__from">Chicago area</div>
+        <div class="mani__who">The rest of you, smugly</div>
+        <div class="mani__mi">0</div>
+        <div class="mani__st"><span class="chip chip--here">Already here</span></div>
+      </div>
+
+      <div class="mani__foot">
+        <span>Roughly <b>24,500 air miles</b> of inbound, give or take a headwind</span>
+        <span>Three held &middot; one already down &middot; everyone else moving</span>
+      </div>
+    </div>
+
+    <p class="pull">
+      Hawaii to New Zealand to a forest<br>outside Wausau. <em>Obviously.</em>
+    </p>
+  </section>
+
+  <!-- ======================= RECRUITMENT ======================= -->
+  <section id="recruit">
+    <p class="eyebrow"><span class="num">02</span> Recruitment</p>
+    <h2 class="sec-title">Two more<br>strangers</h2>
+    <p class="sec-sub">
+      Fact 04, back in August, was the ugly one: slots open, and nothing to sell but a maybe. You
+      cannot recruit into that. Jimmie recruited into that anyway. The roster never did fill &mdash;
+      it settled at thirteen of a possible sixteen and then it was set &mdash; but two people said
+      yes while the race was still theoretical, and that is the part worth remembering.
+    </p>
+
+    <div class="welcomes">
+      <div class="welcome">
+        <div class="welcome__k">Newest stranger &mdash; 01</div>
+        <div class="welcome__n">IZ Torres</div>
+        <p class="welcome__b">
+          Said yes to a race that might not have happened, then took the third seat out of Hawaii.
+          Roughly 4,200 miles to run laps in a Wisconsin forest overnight with a team named after a
+          van it does not actually use. Correct instincts, immediately. Welcome to it.
+        </p>
+        <dl class="dgrid">
+          <div><dt>Recruited by</dt><dd><b>Jimmie</b></dd></div>
+          <div><dt>Inbound from</dt><dd>Hawaii &mdash; seat 3 of 3</dd></div>
+          <div><dt>Approx. air miles</dt><dd>~4,200</dd></div>
+          <div><dt>Sold on</dt><dd>A race that did not yet exist</dd></div>
+          <div><dt>Resemblance to Delores</dt><dd>None reported</dd></div>
+        </dl>
+      </div>
+
+      <div class="welcome">
+        <div class="welcome__k">Newest stranger &mdash; 02</div>
+        <div class="welcome__n">Sarah</div>
+        <p class="welcome__b">
+          Jess Schroeder's sister, in from Charlotte, and already on the ground in Chicago while
+          three of us are still arguing with a departure board. Absorbed into the local crew on
+          arrival. The Schroeder pipeline delivers again.
+        </p>
+        <dl class="dgrid">
+          <div><dt>Relation</dt><dd><b>Jess Schroeder's sister</b></dd></div>
+          <div><dt>Inbound from</dt><dd>Charlotte, NC</dd></div>
+          <div><dt>Approx. air miles</dt><dd>~600</dd></div>
+          <div><dt>Status</dt><dd><b>Landed</b> &mdash; now local</dd></div>
+          <div><dt>Storm exposure</dt><dd>None. Beat it.</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      <b>Credit where it is owed:</b> the nightmare roster further down this page only stayed
+      fictional because somebody did the unglamorous work of asking people while the race was still
+      a rumour. That was Jimmie. Thirteen is not sixteen, but thirteen is a team, and the
+      alternative to recruiting is being assigned whoever turns up. Buy him a beverage of his
+      choosing this weekend.
+    </div>
+  </section>
+
+  <!-- ======================= WEATHER HOLD ======================= -->
+  <section id="weather">
+    <p class="eyebrow"><span class="num">03</span> Weather hold</p>
+    <h2 class="sec-title">Thunderstorms<br>over Chicago</h2>
+    <p class="sec-sub">
+      Naturally. We spent most of August and half of September not knowing whether there would be a
+      race, got the yes, and the sky picked today to have opinions. Storms are moving through Chicago, which means holds, which
+      means three of us are currently a range rather than a time. Nobody is stranded. Everybody is
+      inconvenienced. This is fine.
+    </p>
+
+    <div class="grid grid--3">
+      <div class="card">
+        <div class="card__k">Affected &mdash; 03</div>
+        <div class="card__h">Gibbs, Kelaine, Josh</div>
+        <p class="card__b">
+          Out of Newark, Detroit and Raleigh respectively. All three routed through the same
+          weather. Assume arrival times move. Assume they move more than once.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card__k">Impact</div>
+        <div class="card__h">The meetup is now a window</div>
+        <p class="card__b">
+          Not a cancellation, not a crisis &mdash; just a soft edge. Whoever lands first grabs a table,
+          grabs snacks, and holds the position. Everyone else joins in stages.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card__k">Not affected</div>
+        <div class="card__h">The actual race</div>
+        <p class="card__b">
+          Nine Mile Forest is a few hundred miles north of all this and does not care what O'Hare
+          is doing. Friday morning is Friday morning.
+        </p>
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      <b>If you are on the ground before we are:</b> do not stand at baggage claim waiting for us like
+      it's a movie. Text the thread with where you are, start the snacks without us, and let the
+      window do its thing. Arriving in waves is not a failure state. It is just how today is going
+      to go.
+    </div>
+
+    <p class="pull">
+      A thunderstorm can move a meetup.<br>It cannot move <em>the weekend.</em>
+    </p>
+  </section>
+
   <!-- ======================= RUMOR MILL ======================= -->
   <section id="rumor">
-    <p class="eyebrow"><span class="num">01</span> The rumor mill</p>
+    <p class="eyebrow"><span class="num">04</span> The rumor mill</p>
     <h2 class="sec-title">Chain of custody</h2>
     <p class="sec-sub">
       Every piece of information you currently have about September travelled this exact path.
       Presented without comment, so you can decide for yourself how much of your anxiety is load-bearing.
     </p>
+    <p><span class="superseded">Resolved 17 Sept 2026 &mdash; the race is on</span></p>
 
     <div class="chain">
       <div class="node">
@@ -675,9 +978,10 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
 
   <!-- ======================= WHAT TO KNOW ======================= -->
   <section id="know">
-    <p class="eyebrow"><span class="num">02</span> What to know</p>
+    <p class="eyebrow"><span class="num">05</span> What to know</p>
     <h2 class="sec-title">The four facts</h2>
     <p class="sec-sub">Everything actually known, as of the transmission. Anything not on this list is Reddit.</p>
+    <p><span class="superseded">Archive &mdash; as of 05 Aug 2026. Fact 01 went our way; Fact 04 mostly did.</span></p>
 
     <div class="grid grid--2">
       <div class="card">
@@ -705,7 +1009,7 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
 
   <!-- ======================= MOST IMPORTANTLY ======================= -->
   <section id="most">
-    <p class="eyebrow"><span class="num">03</span> Most importantly</p>
+    <p class="eyebrow"><span class="num">06</span> Most importantly</p>
     <h2 class="sec-title">The weekend<br>happens either way</h2>
     <p class="sec-sub">
       Race on or race off, Kelaine and Gibbs are going to the Midwest for a Strangers weekend, and would
@@ -753,13 +1057,13 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
 
   <!-- ======================= FIELD REPORT ======================= -->
   <section id="field">
-    <p class="eyebrow"><span class="num">04</span> Field report</p>
+    <p class="eyebrow"><span class="num">07</span> Field report</p>
     <h2 class="sec-title">Sighting<br>in the wild</h2>
     <p class="sec-sub">
       The first race this team ever ran together was Hood To Coast, in Oregon. The van was decorated
       around a single theme: offering candy to strangers. That van is the reason there is a team name
-      at all. Yesterday, at a county fair in Nebraska, Dave and Jess found this one trailered and
-      derby-bound at dusk, running the same joke with no knowledge of us whatsoever.
+      at all. Back in early August, at a county fair in Nebraska, Dave and Jess found this one
+      trailered and derby-bound at dusk, running the same joke with no knowledge of us whatsoever.
     </p>
 
     <figure class="dispatch">
@@ -787,7 +1091,7 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
 
   <!-- ======================= NIGHTMARE ROSTER ======================= -->
   <section id="nightmare">
-    <p class="eyebrow"><span class="num">05</span> What we don't need or want</p>
+    <p class="eyebrow"><span class="num">08</span> What we don't need or want</p>
     <h2 class="sec-title">The nightmare roster</h2>
     <p class="sec-sub">
       The stated personal nightmare: this email spooks everyone into pulling out, then Ragnar says
@@ -879,13 +1183,14 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
 
   <!-- ======================= THE ASK ======================= -->
   <section id="need">
-    <p class="eyebrow"><span class="num">06</span> What we need from you</p>
+    <p class="eyebrow"><span class="num">09</span> What we need from you</p>
     <h2 class="sec-title">Pick a letter</h2>
     <p class="sec-sub">
       Nothing concrete from Ragnar yet, but we definitely want to hear from you. Once we know where
       everyone stands we can build a backup plan that isn't disruptive or last minute and
       <em>will</em> be epic and fun as hell.
     </p>
+    <p><span class="superseded">Archive &mdash; the ask from 05 Aug 2026. Since answered: the race is on and thirteen of you are inbound.</span></p>
 
     <div class="ask">
       <button class="opt" type="button" data-opt="A" aria-pressed="false">
@@ -917,7 +1222,7 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
 
   <!-- ======================= RECEIPTS ======================= -->
   <section id="receipts">
-    <p class="eyebrow"><span class="num">07</span> Receipts</p>
+    <p class="eyebrow"><span class="num">10</span> Receipts</p>
     <h2 class="sec-title">The source material</h2>
     <p class="sec-sub">
       The primary documents, lightly cleaned. Contact details removed on purpose &mdash; this page is
@@ -1084,7 +1389,7 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
   <div class="wrap">
     <p class="kicker">We didn't throw this curve ball, but we still know how to <em>drive in runs.</em></p>
     <div class="foot-love">We f***ing love you guys.</div>
-    <div class="foot-note">Never Get In A Van With Strangers &mdash; Teams #140 &amp; #150 &mdash; since 2013</div>
+    <div class="foot-note">Never Get In A Van With Strangers &mdash; Teams #140 &amp; #150 &mdash; since 2012</div>
   </div>
 </footer>
 
@@ -1099,11 +1404,12 @@ var CONFIG = {
   // Recreation Area, Wausau WI. Confirmed from runragnar.com's own race page
   // on 2026-08-08, cross-checked against runguides.com and gotrail.run.
   //
-  // Ragnar has NOT published a per-team start time (Trail races use staggered
-  // starts; the number lives in the 2026 Race Guide). So this anchors to Friday
-  // morning Central and the label reads "race weekend", not "your start".
+  // Race CONFIRMED and on as of 17 Sept 2026. Our first team's start time is
+  // 8:00 AM Friday, local time at Nine Mile Forest -- that is US Central, and
+  // 18 Sept 2026 is inside daylight saving, so the offset is -05:00 (CDT).
+  // The second team goes off in a staggered wave behind it, per Ragnar Trail.
   // Format: YYYY-MM-DDTHH:MM:SS with offset (-05:00 = Central Daylight Time).
-  raceISO: "2026-09-18T09:00:00-05:00"
+  raceISO: "2026-09-18T08:00:00-05:00"
 };
 
 /* ---------- countdown ---------- */
@@ -1120,7 +1426,7 @@ var CONFIG = {
       el.d.textContent = '00'; el.h.textContent = '00';
       el.m.textContent = '00'; el.s.textContent = '00';
       var cap = document.querySelector('.clock__cap');
-      if (cap) cap.innerHTML = "<b>It is happening.</b> Or it isn't. Check your email.";
+      if (cap) cap.innerHTML = "<b>That is the start.</b> Runner one is on the trail.";
       return;
     }
     var sec = Math.floor(diff / 1000);
