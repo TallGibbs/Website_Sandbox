@@ -23,7 +23,7 @@ production Cloudflare Pages deploy wired to `main`. Toys don't belong in there.
 
 | Path | What it is |
 | --- | --- |
-| [`strangers-2026/`](strangers-2026/) | **Delores Threat Board.** A mock situation board memorialising Kelaine's Aug 2026 email to the Never Get In A Van With Strangers relay team, when Ragnar Trail Wisconsin might or might not have been cancelled. Live countdown, rumour chain-of-custody, the nightmare roster, and a raccoon. |
+| [`strangers-2026/`](strangers-2026/) | **Delores Threat Board.** A mock situation board for the Never Get In A Van With Strangers relay team. Started life memorialising Kelaine's Aug 2026 email, when Ragnar Trail Wisconsin might or might not have been cancelled; updated 17 Sept 2026 when the race was confirmed and Chicago thunderstorms started holding half the inbound roster. Live countdown, arrivals manifest, rumour chain-of-custody, the nightmare roster, and a raccoon. |
 
 ## Local preview
 
