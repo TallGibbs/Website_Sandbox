@@ -246,6 +246,28 @@ section + section{ border-top:1px solid var(--line); }
   font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--bone-3);
 }
 .mani__foot b{ color:var(--gold); font-weight:400; }
+/* ============================================================
+   RECRUITMENT — the welcome panel
+   ============================================================ */
+.welcome{
+  margin-top:44px;
+  border:1px solid var(--gold-dim);
+  background:linear-gradient(180deg, var(--panel-2), var(--panel));
+  border-radius:3px;
+  padding:clamp(24px,4.4vw,46px);
+  box-shadow:0 0 90px -50px rgba(201,162,76,.55);
+}
+.welcome__k{
+  font-family:var(--mono); font-size:10px; letter-spacing:.26em;
+  text-transform:uppercase; color:var(--gold);
+}
+.welcome__n{
+  font-family:var(--display); font-size:clamp(44px,9vw,96px);
+  color:var(--gold); line-height:.9; margin-top:12px;
+}
+.welcome__b{ color:var(--bone-2); font-size:15px; margin:22px 0 0; max-width:58ch; }
+.welcome .dgrid{ margin-top:28px; border-top:1px solid var(--line); }
+
 @media (max-width:760px){
   .mani__row{ grid-template-columns: 1fr auto; }
   .mani__from{ grid-column:1; }
@@ -575,6 +597,8 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
     <span>Advisory &mdash; 17 Sept 2026 &mdash; thunderstorms over Chicago</span>
     <span>Weather hold: Newark &middot; Detroit &middot; Raleigh</span>
     <span>Inbound: Hawaii &times;3 &middot; New Zealand &middot; Portland</span>
+    <span>Roster: FULL &mdash; last slot closed by Jimmy</span>
+    <span>Welcome IZ Torres &mdash; inbound from Hawaii</span>
     <span>Threat level: Delores</span>
     <span>Brian: still not invited</span>
     <span>Race status: <b>CONFIRMED</b> &mdash; Ragnar Trail Wisconsin is ON</span>
@@ -582,6 +606,8 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
     <span>Advisory &mdash; 17 Sept 2026 &mdash; thunderstorms over Chicago</span>
     <span>Weather hold: Newark &middot; Detroit &middot; Raleigh</span>
     <span>Inbound: Hawaii &times;3 &middot; New Zealand &middot; Portland</span>
+    <span>Roster: FULL &mdash; last slot closed by Jimmy</span>
+    <span>Welcome IZ Torres &mdash; inbound from Hawaii</span>
     <span>Threat level: Delores</span>
     <span>Brian: still not invited</span>
   </div>
@@ -650,7 +676,7 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
             <span class="pip pip--on"></span>
             <span class="pip pip--on"></span>
           </div>
-          <div class="pips__cap"><b>Full.</b> Nobody had to be sourced at short notice.</div>
+          <div class="pips__cap"><b>Full.</b> Last slot closed by Jimmy, not by panic.</div>
         </div>
 
         <div>
@@ -707,7 +733,7 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
 
       <div class="mani__row">
         <div class="mani__from">Hawaii</div>
-        <div class="mani__who">Three of ours</div>
+        <div class="mani__who">Three of ours &mdash; incl. IZ Torres</div>
         <div class="mani__mi">~4,200</div>
         <div class="mani__st"><span class="chip chip--ok">No delay reported</span></div>
       </div>
@@ -765,9 +791,45 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
     </p>
   </section>
 
+  <!-- ======================= RECRUITMENT ======================= -->
+  <section id="recruit">
+    <p class="eyebrow"><span class="num">02</span> Recruitment</p>
+    <h2 class="sec-title">The last slot</h2>
+    <p class="sec-sub">
+      Fact 04, back in August, was the ugly one: slots open, and nothing to sell but a maybe. You
+      cannot recruit into that. Jimmy recruited into that. The roster closed while the race was
+      still theoretical, which remains the most impressive thing anybody did this cycle.
+    </p>
+
+    <div class="welcome">
+      <div class="welcome__k">Newest stranger</div>
+      <div class="welcome__n">IZ Torres</div>
+      <p class="welcome__b">
+        Said yes to a race that might not have happened, then took the third seat out of Hawaii.
+        Roughly 4,200 miles to run laps in a Wisconsin forest overnight with a team named after a
+        van. Correct instincts, immediately. Welcome to it.
+      </p>
+      <dl class="dgrid">
+        <div><dt>Recruited by</dt><dd><b>Jimmy</b></dd></div>
+        <div><dt>Inbound from</dt><dd>Hawaii &mdash; seat 3 of 3</dd></div>
+        <div><dt>Approx. air miles</dt><dd>~4,200</dd></div>
+        <div><dt>Sold on</dt><dd>A race that did not yet exist</dd></div>
+        <div><dt>Slot status</dt><dd><b>Closed</b></dd></div>
+        <div><dt>Resemblance to Delores</dt><dd>None reported</dd></div>
+      </dl>
+    </div>
+
+    <div class="disclaimer">
+      <b>Credit where it is owed:</b> the nightmare roster further down this page only stayed
+      fictional because somebody did the unglamorous work of asking people. That was Jimmy. The
+      alternative to recruiting is being assigned whoever turns up. Buy Jimmy a beverage of their
+      choosing this weekend.
+    </div>
+  </section>
+
   <!-- ======================= WEATHER HOLD ======================= -->
   <section id="weather">
-    <p class="eyebrow"><span class="num">02</span> Weather hold</p>
+    <p class="eyebrow"><span class="num">03</span> Weather hold</p>
     <h2 class="sec-title">Thunderstorms<br>over Chicago</h2>
     <p class="sec-sub">
       Naturally. We spent five weeks not knowing whether there would be a race, got the yes, and the
@@ -817,7 +879,7 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
 
   <!-- ======================= RUMOR MILL ======================= -->
   <section id="rumor">
-    <p class="eyebrow"><span class="num">03</span> The rumor mill</p>
+    <p class="eyebrow"><span class="num">04</span> The rumor mill</p>
     <h2 class="sec-title">Chain of custody</h2>
     <p class="sec-sub">
       Every piece of information you currently have about September travelled this exact path.
@@ -873,7 +935,7 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
 
   <!-- ======================= WHAT TO KNOW ======================= -->
   <section id="know">
-    <p class="eyebrow"><span class="num">04</span> What to know</p>
+    <p class="eyebrow"><span class="num">05</span> What to know</p>
     <h2 class="sec-title">The four facts</h2>
     <p class="sec-sub">Everything actually known, as of the transmission. Anything not on this list is Reddit.</p>
     <p><span class="superseded">Archive &mdash; as of 05 Aug 2026. Facts 01 and 04 have since gone our way.</span></p>
@@ -904,7 +966,7 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
 
   <!-- ======================= MOST IMPORTANTLY ======================= -->
   <section id="most">
-    <p class="eyebrow"><span class="num">05</span> Most importantly</p>
+    <p class="eyebrow"><span class="num">06</span> Most importantly</p>
     <h2 class="sec-title">The weekend<br>happens either way</h2>
     <p class="sec-sub">
       Race on or race off, Kelaine and Gibbs are going to the Midwest for a Strangers weekend, and would
@@ -952,7 +1014,7 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
 
   <!-- ======================= FIELD REPORT ======================= -->
   <section id="field">
-    <p class="eyebrow"><span class="num">06</span> Field report</p>
+    <p class="eyebrow"><span class="num">07</span> Field report</p>
     <h2 class="sec-title">Sighting<br>in the wild</h2>
     <p class="sec-sub">
       The first race this team ever ran together was Hood To Coast, in Oregon. The van was decorated
@@ -986,7 +1048,7 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
 
   <!-- ======================= NIGHTMARE ROSTER ======================= -->
   <section id="nightmare">
-    <p class="eyebrow"><span class="num">07</span> What we don't need or want</p>
+    <p class="eyebrow"><span class="num">08</span> What we don't need or want</p>
     <h2 class="sec-title">The nightmare roster</h2>
     <p class="sec-sub">
       The stated personal nightmare: this email spooks everyone into pulling out, then Ragnar says
@@ -1078,7 +1140,7 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
 
   <!-- ======================= THE ASK ======================= -->
   <section id="need">
-    <p class="eyebrow"><span class="num">08</span> What we need from you</p>
+    <p class="eyebrow"><span class="num">09</span> What we need from you</p>
     <h2 class="sec-title">Pick a letter</h2>
     <p class="sec-sub">
       Nothing concrete from Ragnar yet, but we definitely want to hear from you. Once we know where
@@ -1116,7 +1178,7 @@ body.unleashed .unleash-bar{ transform:translateY(0); }
 
   <!-- ======================= RECEIPTS ======================= -->
   <section id="receipts">
-    <p class="eyebrow"><span class="num">09</span> Receipts</p>
+    <p class="eyebrow"><span class="num">10</span> Receipts</p>
     <h2 class="sec-title">The source material</h2>
     <p class="sec-sub">
       The primary documents, lightly cleaned. Contact details removed on purpose &mdash; this page is
